@@ -1,0 +1,6 @@
+<h1>Livres non disponibles</h1>
+<ul>
+    {% for livre in livres %}
+        <li>{{ livre.titre }} par {{ livre.auteur }}</li>
+    {% endfor %}
+</ul>

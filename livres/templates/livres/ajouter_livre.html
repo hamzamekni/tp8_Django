@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}Ajouter un livre{% endblock %}
+{% block content %}
+    <h2>Ajouter un nouveau livre</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
+    </form>
+    <a href="{% url 'livres_disponibles' %}" class="btn btn-secondary">Retour à la liste</a>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            flatpickr("#datePicker", {
+                dateFormat: "Y-m-d",
+            });
+        });
+    </script>
+{% endblock %}

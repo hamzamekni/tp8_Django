@@ -1,0 +1,11 @@
+<h1>Modifier le livre : {{ form.instance.titre }}</h1>
+<form method="post" enctype="multipart/form-data"> <!-- Add enctype -->
+    {% csrf_token %}
+    {{ form.as_p }}
+    {% if form.instance.image %}
+        <p>Image actuelle :</p>
+        <img src="{{ form.instance.image.url }}" alt="Image du livre" width="200">
+    {% endif %}
+    <button type="submit" class="btn btn-primary">Enregistrer</button>
+</form>
+<a href="{% url 'details_livre' livre.id %}" class="btn btn-secondary">Annuler</a>

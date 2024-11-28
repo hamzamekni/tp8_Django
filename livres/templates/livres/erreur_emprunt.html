@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block title %}Erreur : Emprunt impossible{% endblock %}
+
+{% block content %}
+    <h2>Erreur</h2>
+    <p>{{ message }}</p>
+    <a href="{% url 'livres_disponibles' %}" class="btn btn-secondary">Retour aux livres disponibles</a>
+{% endblock %}

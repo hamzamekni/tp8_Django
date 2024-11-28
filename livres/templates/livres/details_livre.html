@@ -1,0 +1,6 @@
+<h1>{{ livre.titre }}</h1>
+<p>Auteur : {{ livre.auteur }}</p>
+<p>Date de publication : {{ livre.date_publication }}</p>
+<p>Disponible : {{ livre.disponible }}</p>
+<a href="{% url 'update_livre' livre.pk %}">Modifier ce livre</a>
+<a href="{% url 'emprunter_livre' livre.pk %}">Emprunter ce livre</a>

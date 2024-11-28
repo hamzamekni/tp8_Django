@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block title %}Compteur des livres empruntés{% endblock %}
+
+{% block content %}
+    <div class="counter">
+        <h2>Nombre de livres empruntés : {{ compteur }}</h2>
+        <a href="{% url 'livres_disponibles' %}" class="btn btn-primary">Voir les livres disponibles</a>
+    </div>
+{% endblock %}

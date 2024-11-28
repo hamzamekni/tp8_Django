@@ -1,0 +1,13 @@
+<!-- In moyenne_publication.html -->
+{% extends 'base.html' %}
+
+{% block title %}Moyenne des dates de publication{% endblock %}
+
+{% block content %}
+    <h2>Moyenne des dates de publication des livres</h2>
+    {% if average_date %}
+        <p>L'année moyenne de publication des livres est : {{ average_date }}</p>
+    {% else %}
+        <p>Aucune donnée disponible.</p>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block title %}Liste des livres{% endblock %}
+{% block content %}
+<form method="GET" action="{% url 'livres_disponibles' %}">
+    <div>
+        <label for="auteur">Auteur:</label>
+        <input type="text" name="auteur" id="auteur" value="{{ request.GET.auteur }}">
+    </div>
+    <div>
+        <label for="disponible">Disponible:</label>
+        <select name="disponible" id="disponible">
+            <option value="">-- Sélectionner --</option>
+            <option value="true" {% if request.GET.disponible == 'true' %}selected{% endif %}>Disponible</option>
+            <option value="false" {% if request.GET.disponible == 'false' %}selected{% endif %}>Non disponible</option>
+        </select>
+    </div>
+    <button type="submit">Filtrer</button>
+</form>
+
+<ul>
+    {% for livre in livres %}
+        <li>
+            {% if livre.image %}
+                <img src="{{ livre.image.url }}" alt="{{ livre.titre }}" width="100">
+            {% endif %}
+            <a href="{% url 'details_livre' livre.id %}" class="book-info">
+                {{ livre.titre }}
+            </a> 
+            par 
+            <span class="book-info">
+                {{ livre.auteur }}
+            </span>
+            <a href="{% url 'update_livre' livre.id %}" class="btn btn-warning btn-sm">Modifier</a>
+
+            {% if livre.disponible %}
+                <a href="{% url 'creer_emprunt' livre.id %}" class="btn btn-success btn-sm">Emprunter</a>
+                <span class="status available">Disponible</span>
+            {% else %}
+                <span class="status not-available">Non disponible</span>
+            {% endif %}
+            
+            <!-- Display emprunt count -->
+            <span class="emprunt-count">Emprunts: {{ livre.emprunt_total }}</span> <!-- Display count here -->
+        </li>
+    {% endfor %}
+</ul>
+        <a href="{% url 'ajouter_livre' %}" class="btn btn-primary">Ajouter un livre</a>
+        <a href="{% url 'livres_non_disponibles' %}" class="btn btn-danger">Livres non disponibles</a>
+        <a href="{% url 'compteur_livres_empruntes' %}" class="btn btn-danger">Compteur des livres empruntés</a>
+        <a href="{% url 'livres_trie_par_date' %}" class="btn btn-info">Voir les livres triés par date</a>
+        <a href="{% url 'rechercher_livres' %}" class="btn btn-secondary">Rechercher un livre</a>
+
+    </div>
+
+    
+    
+{% endblock %}

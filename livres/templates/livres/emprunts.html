@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Emprunts{% endblock %}
+
+{% block content %}
+    <h2>Livres empruntés</h2>
+    <ul>
+        {% for emprunt in emprunts %}
+            <li>
+                {{ emprunt.livre.titre }} emprunté par {{ emprunt.nom_emprunteur }}
+                <br>
+                Date d'emprunt : {{ emprunt.date_emprunt }}
+                
+                <!-- Return button for each emprunt -->
+                <form action="{% url 'return_livre' emprunt.pk %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Retourner</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

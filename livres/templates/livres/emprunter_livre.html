@@ -1,0 +1,7 @@
+<h1>Emprunter : {{ livre.titre }}</h1>
+<form method="post">
+    {% csrf_token %}
+    <label for="nom_emprunteur">Nom de l'emprunteur :</label>
+    <input type="text" id="nom_emprunteur" name="nom_emprunteur" required>
+    <button type="submit">Emprunter</button>
+</form>

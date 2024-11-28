@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Emprunter le livre : {{ livre.titre }}{% endblock %}
+
+{% block content %}
+    <h2>Emprunter le livre : "{{ livre.titre }}"</h2>
+    <p><strong>Auteur :</strong> {{ livre.auteur }}</p>
+    <p><strong>Date de publication :</strong> {{ livre.date_publication }}</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <div>
+            <label for="nom_emprunteur">Nom de l'emprunteur :</label>
+            <input type="text" name="nom_emprunteur" id="nom_emprunteur" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Confirmer l'emprunt</button>
+    </form>
+    <a href="{% url 'livres_disponibles' %}" class="btn btn-secondary">Annuler</a>
+{% endblock %}

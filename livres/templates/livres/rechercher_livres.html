@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Rechercher des livres{% endblock %}
+
+{% block content %}
+    <div class="search-section">
+        <h2>Rechercher un livre</h2>
+        <form method="get" action="{% url 'rechercher_livres' %}">
+            <input type="text" name="q" placeholder="Rechercher par titre" value="{{ query }}" class="search-input">
+            <button type="submit" class="btn btn-primary">Rechercher</button>
+        </form>
+
+        {% if query %}
+            <h3>Résultats pour "{{ query }}":</h3>
+        {% endif %}
+
+        <ul>
+            {% for livre in livres %}
+                <li>
+                    <strong>{{ livre.titre }}</strong> par {{ livre.auteur }}<br>
+                    <em>Publié le : {{ livre.date_publication }}</em>
+                </li>
+            {% empty %}
+                <p>Aucun livre trouvé pour "{{ query }}".</p>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'livres_disponibles' %}" class="btn btn-primary">Retour aux livres disponibles</a>
+    </div>
+{% endblock %}

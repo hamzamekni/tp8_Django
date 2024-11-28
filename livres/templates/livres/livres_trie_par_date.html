@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Livres triés par date{% endblock %}
+
+{% block content %}
+    <div class="sorted-books">
+        <h2>Livres triés par date</h2>
+
+        <!-- Links to change the sorting order -->
+        <a href="?order=asc" class="btn btn-light {% if order == 'asc' %}active{% endif %}">Trier par date croissante</a>
+        <a href="?order=desc" class="btn btn-light {% if order == 'desc' %}active{% endif %}">Trier par date décroissante</a>
+
+        <ul>
+            {% for livre in livres %}
+                <li>
+                    <strong>{{ livre.titre }}</strong> par {{ livre.auteur }} <br>
+                    <em>Publié le : {{ livre.date_publication }}</em>
+                </li>
+            {% empty %}
+                <p>Aucun livre trouvé.</p>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'livres_disponibles' %}" class="btn btn-primary">Retour aux livres disponibles</a>
+    </div>
+{% endblock %}
